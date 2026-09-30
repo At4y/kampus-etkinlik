@@ -1,0 +1,118 @@
+/* Abdullah Ahmet Şen — 2416501425 */
+:root {
+  --no: 2416501425;
+  --ton: mod(var(--no), 360);
+  --renk-ana: hsl(var(--ton) 65% 38%);
+  --renk-zemin: hsl(var(--ton) 30% 97%);
+  --font: "Times New Roman", serif;
+  --bosluk-m: 1rem;
+  --kose: 8px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: var(--font);
+  margin: 0;
+  background: var(--renk-zemin);
+  color: #1a1a1a;
+  line-height: 1.5;
+}
+
+header {
+  background: var(--renk-ana);
+  color: white;
+  padding: var(--bosluk-m);
+}
+
+header h1 { margin: 0 0 0.5rem 0; }
+
+nav a {
+  color: white;
+  margin-right: var(--bosluk-m);
+  text-decoration: none;
+  font-weight: bold;
+}
+nav a:hover { text-decoration: underline; }
+
+main {
+  padding: var(--bosluk-m);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+footer {
+  padding: var(--bosluk-m);
+  text-align: center;
+  color: #555;
+}
+
+/* Etkinlik kartları: section > article, telefonda tek sütun */
+.kart-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--bosluk-m);
+}
+
+article {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: var(--kose);
+  padding: var(--bosluk-m);
+}
+
+article a { color: var(--renk-ana); font-weight: bold; text-decoration: none; }
+article a:hover { text-decoration: underline; }
+
+/* Form */
+form p { margin-bottom: var(--bosluk-m); }
+label { display: block; margin-bottom: 0.25rem; font-weight: bold; }
+
+input, select, textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: var(--kose);
+  font-family: inherit;
+}
+
+button {
+  background: var(--renk-ana);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--kose);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Detay sayfası: telefonda alt alta */
+.detay-icerik {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bosluk-m);
+}
+
+.detay-icerik img { width: 100%; border-radius: var(--kose); }
+
+dl { display: grid; grid-template-columns: auto 1fr; gap: 0.3rem var(--bosluk-m); }
+dt { font-weight: bold; }
+dd { margin: 0; }
+
+/* Geniş ekran (tablet ve üstü) */
+@media (min-width: 600px) {
+  .kart-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .detay-icerik {
+    flex-direction: row;
+  }
+  .detay-icerik figure { flex: 1; }
+  .detay-icerik dl { flex: 1; }
+}
+
+@media (min-width: 900px) {
+  .kart-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
