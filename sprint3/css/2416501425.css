@@ -175,3 +175,24 @@ dd { margin: 0; }
     padding: var(--bosluk-m);
     margin-top: var(--bosluk-m);
 }
+
+.buton {
+    display: inline-block;
+    background: var(--renk-ana);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--kose);
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: var(--bosluk-m);
+    margin-right: 0.5rem;
+}
+.buton:hover {
+    opacity: 0.9;
+}
+
+.buton-ikincil {
+    background: transparent;
+    color: var(--renk-ana);
+    border: 1px solid var(--renk-ana);
+}

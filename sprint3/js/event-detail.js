@@ -46,7 +46,7 @@ if (!event) {
         <h2>Açıklama</h2>
         <p>${event.description}</p>
 
-        <a href="etkinlikler.html">← Listeye dön</a>
-        <a href="etkinlik-guncelle.html?id=${event.id}">Bu etkinliği güncelle</a>
+    <a href="etkinlikler.html" class="buton buton-ikincil">← Listeye dön</a>
+    <a href="etkinlik-guncelle.html?id=${event.id}" class="buton">Bu etkinliği güncelle</a>
     `;
 }
