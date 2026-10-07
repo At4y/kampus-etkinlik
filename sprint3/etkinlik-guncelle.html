@@ -75,5 +75,15 @@
     <footer>
         <p>Abdullah Ahmet Şen · 2416501425 · 2026</p>
     </footer>
+
+    <script>
+    const buradaSayfa = location.pathname.split("/").pop();
+    document.querySelectorAll("nav a").forEach((link) => {
+        if (link.getAttribute("href") === buradaSayfa) {
+            link.classList.add("aktif");
+        }
+    });
+</script>
+
 </body>
 </html>

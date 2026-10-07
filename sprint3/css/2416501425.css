@@ -196,3 +196,10 @@ dd { margin: 0; }
     color: var(--renk-ana);
     border: 1px solid var(--renk-ana);
 }
+
+nav a.aktif {
+    background: white;
+    color: var(--renk-ana);
+    padding: 0.3rem 0.7rem;
+    border-radius: var(--kose);
+}
