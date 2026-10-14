@@ -1,7 +1,7 @@
 /* Abdullah Ahmet Şen — 2416501425 */
 :root {
   --no: 2416501425;
-  --ton: mod(var(--no), 360);
+  --ton: 345; /* mod(2416501425, 360) = 345 */
   --renk-ana: hsl(var(--ton) 65% 38%);
   --renk-zemin: hsl(var(--ton) 30% 97%);
   --font: "Times New Roman", serif;
