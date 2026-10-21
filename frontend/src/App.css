@@ -22,7 +22,13 @@ body {
 header {
   background: var(--renk-ana);
   color: white;
-  padding: var(--bosluk-m);
+  padding: var(--bosluk-m) var(--bosluk-m) 0;
+  display: flow-root;
+}
+
+nav {
+  background: var(--renk-ana);
+  padding: 0 var(--bosluk-m) var(--bosluk-m);
 }
 
 header h1 { margin: 0 0 0.5rem 0; }
@@ -108,7 +114,7 @@ dd { margin: 0; }
     flex-direction: row;
   }
   .detay-icerik figure { flex: 1; }
-  .detay-icerik dl { flex: 1; }
+  .detay-icerik .kunye { flex: 1; }
 }
 
 @media (min-width: 900px) {
@@ -137,7 +143,8 @@ dd { margin: 0; }
     border-radius: var(--kose);
 }
 
-#sonuc {
+#sonuc,
+.sonuc {
     font-weight: bold;
     color: var(--renk-ana);
 }
@@ -209,4 +216,32 @@ nav a[aria-current="page"] {
     color: var(--renk-ana);
     padding: 0.3rem 0.7rem;
     border-radius: var(--kose);
+}
+.kart {
+  border-top: 4px solid var(--renk-ana);
+}
+
+.rozet {
+  display: inline-block;
+  background: hsl(var(--ton) 30% 90%);
+  color: var(--renk-ana);
+  font-weight: bold;
+  font-size: 0.85rem;
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+}
+
+.kunye {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: var(--kose);
+  padding: var(--bosluk-m);
+}
+
+.kunye h2 {
+  margin-top: 0;
+}
+
+figcaption {
+  font-style: italic;
 }
