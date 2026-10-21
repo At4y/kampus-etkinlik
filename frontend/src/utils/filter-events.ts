@@ -26,3 +26,20 @@ export function findEventById(
 ): CampusEvent | undefined {
   return list.find((e) => e.id === id);
 }
+
+export function filterEvents(
+  list: CampusEvent[],
+  text: string,
+  category: Category | ""
+): CampusEvent[] {
+  return filterByCategory(searchEvents(list, text), category);
+}
+
+export function getUpcomingEvents(
+  list: CampusEvent[],
+  count: number
+): CampusEvent[] {
+  return [...list]
+    .sort((a, b) => a.date.localeCompare(b.date))
+    .slice(0, count);
+}

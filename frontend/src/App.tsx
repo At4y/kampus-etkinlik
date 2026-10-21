@@ -1,29 +1,23 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import type { Category } from "./types/campus-event";
-import EventList from "./components/events/EventList";
+import { getHeaderText, getPageTitle, type PageName } from "./types/page";
 import { events } from "./data/events";
 import {
-  searchEvents,
-  filterByCategory,
+  filterEvents,
   findEventById,
+  getUpcomingEvents,
 } from "./utils/filter-events";
-import type { PageName } from "./types/page";
-import Footer from "./components/layout/Footer";
 import Header from "./components/layout/Header";
 import Navigation from "./components/layout/Navigation";
+import Footer from "./components/layout/Footer";
+import EventList from "./components/events/EventList";
 import EventFilter from "./components/events/EventFilter";
 import EventDetail from "./components/events/EventDetail";
 import EventForm from "./components/forms/EventForm";
 
-const upcoming = [...events]
-  .sort((a, b) => a.date.localeCompare(b.date))
-  .slice(0, 2);
+const upcoming = getUpcomingEvents(events, 2);
 
-const headerTexts: Partial<Record<PageName, string>> = {
-  home: "Fakültedeki seminer, atölye ve söyleşileri tek yerden takip edin.",
-  events: "Ekim ayında kampüste düzenlenen etkinlikler.",
-};
 function App() {
   const [page, setPage] = useState<PageName>("home");
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -37,20 +31,9 @@ function App() {
 
   const showDetail = (id: string) => go("detail", id);
   const categories = [...new Set(events.map((e) => e.category))];
-  const filtered = filterByCategory(
-    searchEvents(events, searchText),
-    category
-  );
+  const filtered = filterEvents(events, searchText, category);
   const selected = selectedId ? findEventById(events, selectedId) : undefined;
-
-  const pageTitles: Record<PageName, string> = {
-    home: "Ana Sayfa",
-    events: "Tüm Etkinlikler",
-    add: "Etkinlik Ekle",
-    detail: selected ? selected.title : "Etkinlik bulunamadı",
-    update: "Etkinlik Güncelle",
-  };
-  const title = pageTitles[page];
+  const title = getPageTitle(page, selected);
 
   useEffect(() => {
     document.title = `Kampüs Etkinlikleri — ${title}`;
@@ -60,7 +43,7 @@ function App() {
     <>
       <Header
         title={page === "home" ? "Kampüs Etkinlikleri" : title}
-        text={headerTexts[page]}
+        text={getHeaderText(page)}
       />
       <Navigation current={page} onNavigate={go} />
 
@@ -91,7 +74,6 @@ function App() {
               onSearchChange={setSearchText}
               onCategoryChange={setCategory}
             />
-
             {filtered.length > 0 && (
               <p id="sonuc">{filtered.length} etkinlik listeleniyor.</p>
             )}
@@ -122,7 +104,6 @@ function App() {
             </a>
           </section>
         )}
-
         {page === "detail" && selected && (
           <EventDetail
             event={selected}
@@ -130,15 +111,11 @@ function App() {
             onEdit={(id) => go("update", id)}
           />
         )}
-
         {(page === "add" || page === "update") && (
           <section>
-            <EventForm
-              onSubmit={() => window.scrollTo(0, 0)}
-            />
+            <EventForm onSubmit={() => window.scrollTo(0, 0)} />
           </section>
         )}
-
       </main>
 
       <Footer />
