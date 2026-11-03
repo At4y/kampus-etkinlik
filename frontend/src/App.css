@@ -1,7 +1,7 @@
 /* Abdullah Ahmet Şen — 2416501425 */
 :root {
   --no: 2416501425;
-  --ton: 345; /* mod(2416501425, 360) = 345 */
+  --ton: 345; /* mod(2416501425, 360) = 345, Css bozulduğu için direkt böyle yazdım */
   --renk-ana: hsl(var(--ton) 65% 38%);
   --renk-zemin: hsl(var(--ton) 30% 97%);
   --font: "Times New Roman", serif;
@@ -245,3 +245,31 @@ nav a[aria-current="page"] {
 figcaption {
   font-style: italic;
 }
+
+/* Yönetim tablosu */
+.tablo { width: 100%; border-collapse: collapse; margin-top: var(--bosluk-m); }
+.tablo th { background: var(--renk-ana); color: #fff; text-align: left; padding: 0.6rem; }
+.tablo td { padding: 0.6rem; border-bottom: 1px solid #ddd; }
+.islemler { display: flex; gap: var(--bosluk-s, 0.5rem); }
+.buton-sil { background: var(--renk-hata, #c62828); }
+
+@media (max-width: 699px) {
+  .tablo thead { display: none; }
+  .tablo tr {
+    display: block;
+    border: 1px solid #ddd;
+    border-radius: var(--kose, 8px);
+    margin-bottom: var(--bosluk-m);
+    padding: 0.4rem;
+  }
+  .tablo td { display: block; border-bottom: none; }
+  .tablo td.islemler { display: flex; }
+  .tablo td[data-baslik]::before {
+    content: attr(data-baslik) ": ";
+    font-weight: 700;
+  }
+}
+
+/* Form altı bağlantılar */
+.form-linkler { display: flex; flex-wrap: wrap; gap: var(--bosluk-m); }
+.form-linkler a { color: var(--renk-ana); }
