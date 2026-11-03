@@ -21,7 +21,6 @@ export const events: CampusEvent[] = [
     location: "Bilgisayar Laboratuvarı 2",
     capacity: 20,
     description: "Arduino ile çizgi izleyen robot yapımı, başlangıç seviyesi.",
-    image: "/afis.jpg",
   },
   {
     id: "event-3",
@@ -32,7 +31,6 @@ export const events: CampusEvent[] = [
     location: "B Blok Amfi 1",
     capacity: 50,
     description: "Sektörden bir uzmanla güvenlik kariyeri üzerine sohbet.",
-    image: "/afis.jpg",
   },
   {
     id: "event-4",
@@ -43,7 +41,6 @@ export const events: CampusEvent[] = [
     location: "Bilgisayar Laboratuvarı 1",
     capacity: 30,
     description: "HTML ve CSS ile ilk kişisel sayfanı yap.",
-    image: "/afis.jpg",
   },
   {
     id: "event-5",
@@ -54,7 +51,6 @@ export const events: CampusEvent[] = [
     location: "B Blok Amfi 2",
     capacity: 80,
     description: "Genç girişimcilerle tanışma ve soru-cevap.",
-    image: "/afis.jpg",
   },
   {
     id: "event-6",
@@ -65,6 +61,5 @@ export const events: CampusEvent[] = [
     location: "A Blok Konferans Salonu",
     capacity: 100,
     description: "Makine öğrenmesine giriş ve uygulama örnekleri.",
-    image: "/afis.jpg",
   },
 ];
