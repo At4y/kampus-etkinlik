@@ -142,7 +142,7 @@
           "script": {
             "type": "text/javascript",
             "exec": [
-              "pm.test(\"Successful POST request\", function () {\n    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\n});\n"
+              "pm.test(\"Status code is 201\", function () {\n    pm.response.to.have.status(201);\n});"
             ]
           }
         }
