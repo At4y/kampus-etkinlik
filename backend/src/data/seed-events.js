@@ -10,7 +10,7 @@ export const seedEvents = [
       "Sektörde çalışan mühendislerden staj, mülakat ve ilk iş deneyimi üzerine pratik bilgiler.",
   },
   {
-    title: "Mikrodenetleyici ile Sensör Okuma",
+    title: "Mikrodenetleyici ile Sensör Atölyesi",
     category: "Atölye",
     capacity: 25,
     date: "21-10-2026",
