@@ -1,6 +1,6 @@
 # Kampüs Etkinlikleri API
 
-Express ve Mongoose ile yazılmış, etkinlikleri JSON olarak veren REST API. Veriler MongoDB'de saklanır, sunucu yeniden başlasa da kayıtlar silinmez.
+Express ve Mongoose ile yazılmış, etkinlikleri JSON olarak veren REST API. Veriler MongoDB'de saklanır, sunucu yeniden başlasa da kayıtlar silinmez. Etkinlikler listelenir, aranır, güncellenir ve silinir.
 
 ## Çalıştırma
 
@@ -37,32 +37,51 @@ Etkinlikler `kampus` veritabanındaki `events` koleksiyonunda durur.
 |---|---|---|
 | title | metin | zorunlu, 3-100 karakter |
 | category | metin | zorunlu, Seminer / Atölye / Söyleşi / Yarışma |
-| date | metin | zorunlu |
+| date | tarih | zorunlu, istekte ve yanıtta `GG-AA-YYYY` (örnek: `15-10-2026`) |
 | capacity | sayı | en az 0, varsayılan 0 |
 | time | metin | varsayılan boş |
 | location | metin | varsayılan boş |
 | description | metin | en fazla 500 karakter, varsayılan boş |
 
-Kayıt kimliği MongoDB'nin verdiği `_id` değeridir. `createdAt` ve `updatedAt` alanları otomatik eklenir.
+Kayıt kimliği MongoDB'nin verdiği `_id` değeridir. `createdAt` ve `updatedAt` alanları otomatik eklenir. Tarih veritabanında gerçek bir tarih olarak durur, bu yüzden sıralama ve karşılaştırma doğru çalışır. `31-02-2026` gibi olmayan günler ve başka biçimler 400 döner.
 
 ## REST sözleşmesi
 
 | Method | Endpoint | Amaç | Başarılı | Hata | Durum |
 |---|---|---|---|---|---|
-| GET | /events | Listeyi getir (`?category=` ile süzülür) | 200 | — | Bu sprint |
-| GET | /events/:id | Tek etkinlik | 200 | 404 | Bu sprint |
-| POST | /events | Yeni etkinlik | 201 | 400 | Bu sprint |
-| PATCH | /events/:id | Güncelle | 200 | 400, 404 | Sprint 9 |
-| DELETE | /events/:id | Sil | 204 | 404 | Sprint 9 |
+| GET | /events | Listeyi getir (`?search=` ve `?category=` ile süzülür) | 200 | — | Çalışıyor |
+| GET | /events/upcoming | Bugün ve sonrasındaki etkinlikler, tarihe göre sıralı | 200 | — | Çalışıyor |
+| GET | /events/:id | Tek etkinlik | 200 | 404 | Çalışıyor |
+| POST | /events | Yeni etkinlik | 201 | 400 | Çalışıyor |
+| PATCH | /events/:id | Gönderilen alanları güncelle | 200 | 400, 404 | Çalışıyor |
+| DELETE | /events/:id | Sil | 204 | 404 | Çalışıyor |
 
 Ek olarak `GET /health` sunucunun ayakta olduğunu gösterir (200, `status`, `time`, `student`).
-Geçersiz biçimli `:id` değerleri de kayıt bulunamamış gibi 404 döner.
+`/events/upcoming` adresi `/events/:id`'den önce tanımlıdır, yoksa "upcoming" bir id sanılırdı.
+Geçersiz biçimli ya da olmayan `:id` değerleri her yerde 404 döner.
+
+## Sorgu parametreleri
+
+| Parametre | Ne yapar | Örnek |
+|---|---|---|
+| search | Başlıkta büyük/küçük harf fark etmeden arar | `/events?search=git` |
+| category | Kategoriye göre süzer | `/events?category=Atölye` |
+
+İkisi birlikte kullanılabilir: `/events?search=git&category=Atölye`.
+
+## PATCH kuralları
+
+- Sadece gönderilen alanlar değişir, diğerleri aynı kalır.
+- Yanıtta güncellenmiş kayıt döner.
+- Boş body 400 döner (`Body is empty`).
+- `_id`, `createdAt`, `updatedAt` ve `__v` değiştirilemez, denenirse 400 döner.
+- Schema kuralları güncellemede de çalışır, örneğin geçersiz kategori 400 döner.
 
 ## Status code'lar
 
 - 200 tamam
 - 201 oluşturuldu
-- 204 içerik yok
+- 204 içerik yok (silme başarılı, yanıt gövdesi boş)
 - 400 eksik/yanlış veri
 - 404 bulunamadı
 - 500 beklenmeyen sunucu hatası
