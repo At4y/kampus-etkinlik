@@ -3,7 +3,7 @@ export const seedEvents = [
     title: "Yazılım Kariyerine İlk Adım",
     category: "Seminer",
     capacity: 90,
-    date: "2026-10-14",
+    date: "14-10-2026",
     time: "13:30",
     location: "Mühendislik Fakültesi Amfi 3",
     description:
@@ -13,7 +13,7 @@ export const seedEvents = [
     title: "Mikrodenetleyici ile Sensör Okuma",
     category: "Atölye",
     capacity: 25,
-    date: "2026-10-21",
+    date: "21-10-2026",
     time: "10:30",
     location: "Elektronik Laboratuvarı",
     description:
@@ -23,7 +23,7 @@ export const seedEvents = [
     title: "Açık Kaynak Dünyasında Katkıcı Olmak",
     category: "Söyleşi",
     capacity: 60,
-    date: "2026-10-28",
+    date: "03-12-2026",
     time: "15:00",
     location: "Kütüphane Konferans Salonu",
     description:
@@ -33,7 +33,7 @@ export const seedEvents = [
     title: "Git ve GitHub ile Takım Çalışması",
     category: "Atölye",
     capacity: 30,
-    date: "2026-11-04",
+    date: "10-12-2026",
     time: "14:00",
     location: "Bilgisayar Laboratuvarı 4",
     description:
@@ -43,7 +43,7 @@ export const seedEvents = [
     title: "Algoritma Maratonu",
     category: "Yarışma",
     capacity: 45,
-    date: "2026-11-12",
+    date: "17-12-2026",
     time: "09:30",
     location: "Bilgisayar Laboratuvarı 1",
     description:
@@ -53,7 +53,7 @@ export const seedEvents = [
     title: "Veri Güvenliğinin Temelleri",
     category: "Seminer",
     capacity: 80,
-    date: "2026-12-02",
+    date: "24-12-2026",
     time: "11:00",
     location: "Mühendislik Fakültesi Amfi 1",
     description:
